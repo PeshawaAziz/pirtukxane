@@ -1,7 +1,5 @@
 package datastructures.interfaces;
 
-import java.util.Collection;
-
 public interface Queue<T> {
     boolean add(Object t);
 
