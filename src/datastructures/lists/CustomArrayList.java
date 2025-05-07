@@ -20,20 +20,23 @@ public class CustomArrayList<T> implements List<T> {
 
     @Override
     public int size() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'size'");
+        return size;
     }
 
     @Override
     public boolean isEmpty() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isEmpty'");
+        return size == 0;
     }
 
     @Override
     public boolean add(T t) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'add'");
+        if (size == elements.length) {
+            Object[] resizedElements = Arrays.copyOf(elements, elements.length * 2);
+            elements = resizedElements;
+        }
+
+        elements[size++] = t;
+        return true;
     }
 
     @Override
