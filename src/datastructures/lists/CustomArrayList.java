@@ -58,10 +58,18 @@ public class CustomArrayList<T> implements List<T> {
             throw new NullPointerException("Cannot remove null from the list.");
 
         for (int i = 0; i < size; i++) {
-            if (elements[i].equals(o))
+            if (elements[i].equals(o)) {
                 elements[i] = null;
+
+                int j;
+                for (j = i; j < size - 1; j++) {
+                    elements[j] = elements[j + 1];
+                }
+                elements[j] = null;
+
+                size--;
+            }
         }
-        size--;
 
         return true;
     }
