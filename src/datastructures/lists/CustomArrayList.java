@@ -54,8 +54,16 @@ public class CustomArrayList<T> implements List<T> {
 
     @Override
     public boolean remove(Object o) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'remove'");
+        if (o == null)
+            throw new NullPointerException("Cannot remove null from the list.");
+
+        for (int i = 0; i < size; i++) {
+            if (elements[i].equals(o))
+                elements[i] = null;
+        }
+        size--;
+
+        return true;
     }
 
     @Override
