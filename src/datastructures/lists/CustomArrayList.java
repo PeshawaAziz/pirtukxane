@@ -68,16 +68,19 @@ public class CustomArrayList<T> implements List<T> {
 
     @Override
     public T get(int index) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'get'");
+        if (index >= size || index < 0)
+            throw new IndexOutOfBoundsException("The index is invalid.");
+        else
+            return (T) elements[index];
     }
 
     @Override
     public T set(int index, T element) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'set'");
+        if (index >= size || index < 0)
+            throw new IndexOutOfBoundsException("The index is invalid.");
+        else {
+            elements[index] = element;
+            return (T) elements[index];
+        }
     }
-
-    // TODO: Override and fill the methods to complete the data structure
-
 }
