@@ -76,19 +76,22 @@ public class CustomArrayList<T> implements List<T> {
 
     @Override
     public T get(int index) {
-        if (index >= size || index < 0)
-            throw new IndexOutOfBoundsException("The index is invalid.");
-        else
-            return (T) elements[index];
+        checkIndex(index);
+
+        return (T) elements[index];
     }
 
     @Override
     public T set(int index, T element) {
-        if (index >= size || index < 0)
+        checkIndex(index);
+
+        elements[index] = element;
+
+        return (T) elements[index];
+    }
+
+    private void checkIndex(int index) {
+        if (index < 0 || index >= size)
             throw new IndexOutOfBoundsException("The index is invalid.");
-        else {
-            elements[index] = element;
-            return (T) elements[index];
-        }
     }
 }
