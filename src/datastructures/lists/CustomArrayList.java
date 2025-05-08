@@ -30,19 +30,26 @@ public class CustomArrayList<T> implements List<T> {
 
     @Override
     public boolean add(T t) {
+        if (t == null)
+            throw new NullPointerException("Cannot add null to the list.");
+
         if (size == elements.length) {
             Object[] resizedElements = Arrays.copyOf(elements, elements.length * 2);
             elements = resizedElements;
         }
 
         elements[size++] = t;
+
         return true;
     }
 
     @Override
     public boolean contains(Object o) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'contains'");
+        for (Object object : elements)
+            if (object.equals(o))
+                return true;
+
+        return false;
     }
 
     @Override
