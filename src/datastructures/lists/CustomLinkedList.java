@@ -18,44 +18,81 @@ public class CustomLinkedList<T> implements LinkedList<T> {
 
     @Override
     public T get(int index) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'get'");
+        checkIndex(index);
+
+        Node<T> node = node(index);
+        if (node == null)
+            return null;
+        else
+            return node.data;
     }
 
     @Override
     public T set(int index, T element) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'set'");
+        checkIndex(index);
+
+        Node<T> node = node(index);
+        T oldData = node.data;
+        node.data = element;
+
+        return oldData;
     }
 
     @Override
     public int size() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'size'");
+        return size;
     }
 
     @Override
     public boolean isEmpty() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isEmpty'");
+        return size == 0;
     }
 
     @Override
     public boolean add(T t) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'add'");
+        Node<T> newNode = new Node<>(t);
+
+        if (head == null) {
+            head = newNode;
+            tail = newNode;
+        } else {
+            tail.next = newNode;
+            newNode.prev = tail;
+            tail = newNode;
+        }
+
+        size++;
+
+        return true;
     }
 
     @Override
     public boolean contains(Object o) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'contains'");
+        Node<T> node = node(o);
+
+        return node != null;
     }
 
     @Override
     public boolean remove(Object o) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'remove'");
+        Node<T> node = node(o);
+
+        if (node == null)
+            return false;
+
+        if (node.prev != null)
+            node.prev.next = node.next;
+        else
+            head = node.next;
+
+        if (node.next != null)
+            node.next.prev = node.prev;
+        else
+            tail = node.prev;
+
+        size--;
+
+        return true;
     }
 
     @Override
