@@ -5,21 +5,37 @@ import datastructures.lists.CustomLinkedList;
 
 public class CustomQueue<T> implements Queue<T> {
     private CustomLinkedList<T> list;
+    private int capacity;
 
-    public CustomQueue() {
+    public CustomQueue(int capacity) {
         list = new CustomLinkedList<>();
+        setCapacity(capacity);
     }
 
     @Override
     public boolean add(Object t) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'add'");
+        try {
+            if (list.size() < capacity)
+                return list.add((T) t);
+            else
+                throw new IllegalStateException("Cannot add the provided object to the queue. Queue is full.");
+        } catch (ClassCastException e) {
+            System.out.println("Cannot add the provided object to the queue. Invalid type.");
+            return false;
+        }
     }
 
     @Override
     public boolean offer(Object t) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'offer'");
+        try {
+            if (list.size() < capacity)
+                return list.add((T) t);
+            else
+                return false;
+        } catch (ClassCastException e) {
+            System.out.println("Cannot add the provided object to the queue. Invalid type.");
+            return false;
+        }
     }
 
     @Override
@@ -58,6 +74,12 @@ public class CustomQueue<T> implements Queue<T> {
         throw new UnsupportedOperationException("Unimplemented method 'size'");
     }
 
-    // TODO: Override and fill the methods to complete the data structure
+    private final void setCapacity(int capacity) {
+        if (capacity < 0)
+            throw new IllegalArgumentException("The queue capacity cannot be negative.");
+        else
+            this.capacity = capacity;
+
+    }
 
 }
