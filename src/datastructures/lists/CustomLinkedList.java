@@ -97,44 +97,93 @@ public class CustomLinkedList<T> implements LinkedList<T> {
 
     @Override
     public void addFirst(T t) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addFirst'");
+        Node<T> newNode = new Node<>(t);
+
+        if (head == null) {
+            head = newNode;
+            tail = newNode;
+        } else {
+            newNode.next = head;
+            head.prev = newNode;
+            head = newNode;
+        }
+
+        size++;
     }
 
     @Override
     public void addLast(T t) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addLast'");
+        Node<T> newNode = new Node<>(t);
+
+        if (tail == null) {
+            head = newNode;
+            tail = newNode;
+        } else {
+            tail.next = newNode;
+            newNode.prev = tail;
+            tail = newNode;
+        }
+
+        size++;
     }
 
     @Override
     public T removeFirst() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeFirst'");
+        if (head == null) {
+            return null;
+        }
+
+        T data = head.data;
+
+        if (head.next != null) {
+            head = head.next;
+            head.prev = null;
+        } else {
+            head = null;
+            tail = null;
+        }
+
+        size--;
+
+        return data;
     }
 
     @Override
     public T removeLast() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeLast'");
+        if (tail == null) {
+            return null;
+        }
+
+        T data = tail.data;
+
+        if (tail.prev != null) {
+            tail = tail.prev;
+            tail.next = null;
+        } else {
+            head = null;
+            tail = null;
+        }
+
+        size--;
+
+        return data;
     }
 
     @Override
     public T getFirst() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getFirst'");
+        return head != null ? head.data : null;
     }
 
     @Override
     public T getLast() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getLast'");
+        return tail != null ? tail.data : null;
     }
 
     @Override
     public void clear() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'clear'");
+        head = null;
+        tail = null;
+        size = 0;
     }
 
     private Node<T> node(int index) {
