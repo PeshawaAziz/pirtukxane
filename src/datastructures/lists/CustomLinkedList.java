@@ -137,6 +137,45 @@ public class CustomLinkedList<T> implements LinkedList<T> {
         throw new UnsupportedOperationException("Unimplemented method 'clear'");
     }
 
-    // TODO: Override and fill the methods to complete the data structure
+    private Node<T> node(int index) {
+        if (head == null) {
+            return null;
+        } else {
+            Node<T> current;
 
+            if (index < size / 2) {
+                current = head;
+
+                for (int i = 0; i < index; i++) {
+                    current = current.next;
+                }
+            } else {
+                current = tail;
+
+                for (int i = size - 1; i > index; i--) {
+                    current = current.prev;
+                }
+            }
+
+            return current;
+        }
+    }
+
+    private Node<T> node(Object o) {
+        Node<T> current = head;
+
+        while (current != null) {
+            if (current.data.equals(o)) {
+                return current;
+            }
+            current = current.next;
+        }
+
+        return null;
+    }
+
+    private void checkIndex(int index) {
+        if (index < 0 || index >= size)
+            throw new IndexOutOfBoundsException("The index is invalid.");
+    }
 }
