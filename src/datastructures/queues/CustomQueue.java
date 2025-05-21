@@ -43,8 +43,11 @@ public class CustomQueue<T> implements Queue<T> {
     public T remove() {
         if (list.isEmpty())
             throw new NoSuchElementException("The queue is empty.");
-        else
-            return list.getFirst();
+        else {
+            T first = list.getFirst();
+            list.removeFirst();
+            return first;
+        }
     }
 
     @Override
