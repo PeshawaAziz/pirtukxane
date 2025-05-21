@@ -2,6 +2,7 @@ package datastructures.queues;
 
 import datastructures.interfaces.Queue;
 import datastructures.lists.CustomLinkedList;
+import java.util.NoSuchElementException;
 
 public class CustomQueue<T> implements Queue<T> {
     private CustomLinkedList<T> list;
@@ -40,41 +41,50 @@ public class CustomQueue<T> implements Queue<T> {
 
     @Override
     public T remove() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'remove'");
+        if (list.isEmpty())
+            throw new NoSuchElementException("The queue is empty.");
+        else
+            return list.getFirst();
     }
 
     @Override
     public T poll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'poll'");
+        if (list.isEmpty())
+            return null;
+        else {
+            T first = list.getFirst();
+            list.removeFirst();
+            return first;
+        }
     }
 
     @Override
     public T element() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'element'");
+        if (list.isEmpty())
+            throw new NoSuchElementException("The queue is empty.");
+        else
+            return list.getFirst();
     }
 
     @Override
     public T peek() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'peek'");
+        if (list.isEmpty())
+            return null;
+        else
+            return list.getFirst();
     }
 
     @Override
     public boolean isEmpty() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isEmpty'");
+        return list.isEmpty();
     }
 
     @Override
     public int size() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'size'");
+        return list.size();
     }
 
-    private final void setCapacity(int capacity) {
+    private void setCapacity(int capacity) {
         if (capacity < 0)
             throw new IllegalArgumentException("The queue capacity cannot be negative.");
         else
