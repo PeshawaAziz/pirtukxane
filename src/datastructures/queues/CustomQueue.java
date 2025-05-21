@@ -21,7 +21,7 @@ public class CustomQueue<T> implements Queue<T> {
             else
                 throw new IllegalStateException("Cannot add the provided object to the queue. Queue is full.");
         } catch (ClassCastException e) {
-            System.out.println("Cannot add the provided object to the queue. Invalid type.");
+            System.out.println(e.getMessage());
             return false;
         }
     }
@@ -34,7 +34,7 @@ public class CustomQueue<T> implements Queue<T> {
             else
                 return false;
         } catch (ClassCastException e) {
-            System.out.println("Cannot add the provided object to the queue. Invalid type.");
+            System.out.println(e.getMessage());
             return false;
         }
     }
@@ -89,7 +89,5 @@ public class CustomQueue<T> implements Queue<T> {
             throw new IllegalArgumentException("The queue capacity cannot be negative.");
         else
             this.capacity = capacity;
-
     }
-
 }
