@@ -2,62 +2,97 @@ package datastructures.stacks;
 
 import datastructures.interfaces.Queue;
 import datastructures.lists.CustomLinkedList;
+import java.util.NoSuchElementException;
 
 public class CustomStack<T> implements Queue<T> {
     private CustomLinkedList<T> list;
+    private int capacity;
 
     public CustomStack() {
         list = new CustomLinkedList<>();
+        setCapacity(capacity);
     }
 
     @Override
     public boolean add(Object t) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'add'");
+        try {
+            if (list.size() < capacity) {
+                list.addFirst((T) t);
+                return true;
+            } else
+                throw new IllegalStateException("Cannot add the provided object to the stack. Stack is full.");
+        } catch (ClassCastException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 
     @Override
     public boolean offer(Object t) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'offer'");
+        try {
+            if (list.size() < capacity) {
+                list.addFirst((T) t);
+                return true;
+            } else
+                return false;
+        } catch (ClassCastException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
     }
 
     @Override
     public T remove() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'remove'");
+        if (list.isEmpty())
+            throw new NoSuchElementException("The queue is empty.");
+        else {
+            T first = list.getFirst();
+            list.removeFirst();
+            return first;
+        }
     }
 
     @Override
     public T poll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'poll'");
+        if (list.isEmpty())
+            throw new NoSuchElementException("The queue is empty.");
+        else {
+            T first = list.getFirst();
+            list.removeFirst();
+            return first;
+        }
     }
 
     @Override
     public T element() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'element'");
+        if (list.isEmpty())
+            throw new NoSuchElementException("The queue is empty.");
+        else
+            return list.getFirst();
     }
 
     @Override
     public T peek() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'peek'");
+        if (list.isEmpty())
+            return null;
+        else
+            return list.getFirst();
     }
 
     @Override
     public boolean isEmpty() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isEmpty'");
+        return list.isEmpty();
     }
 
     @Override
     public int size() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'size'");
+        return list.size();
     }
 
-    // TODO: Override and fill the methods to complete the data structure
-
+    private void setCapacity(int capacity) {
+        if (capacity < 0)
+            throw new IllegalArgumentException("The queue capacity cannot be negative.");
+        else
+            this.capacity = capacity;
+    }
 }
