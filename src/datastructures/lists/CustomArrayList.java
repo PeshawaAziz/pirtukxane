@@ -33,10 +33,7 @@ public class CustomArrayList<T> implements List<T> {
         if (t == null)
             throw new NullPointerException("Cannot add null to the list.");
 
-        if (size == elements.length) {
-            Object[] resizedElements = Arrays.copyOf(elements, elements.length * 2);
-            elements = resizedElements;
-        }
+        ensureCapacity();
 
         elements[size++] = t;
 
