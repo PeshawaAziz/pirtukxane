@@ -93,4 +93,8 @@ public class CustomQueue<T> implements Queue<T> {
         else
             this.capacity = capacity;
     }
+
+    public void display() {
+        list.display();
+    }
 }

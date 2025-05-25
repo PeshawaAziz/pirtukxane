@@ -91,4 +91,10 @@ public class CustomArrayList<T> implements List<T> {
         if (index < 0 || index >= size)
             throw new IndexOutOfBoundsException("The index is invalid.");
     }
+
+    public void display() {
+        for (int i = 0; i < size; i++)
+            System.out.print(elements[i] + " ");
+        System.out.println();
+    }
 }

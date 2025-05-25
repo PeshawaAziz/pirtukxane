@@ -227,4 +227,14 @@ public class CustomLinkedList<T> implements LinkedList<T> {
         if (index < 0 || index >= size)
             throw new IndexOutOfBoundsException("The index is invalid.");
     }
+
+    public void display() {
+        Node<T> current = head;
+
+        while (current != null) {
+            System.out.print(current.data + " ");
+            current = current.next;
+        }
+        System.out.println();
+    }
 }
