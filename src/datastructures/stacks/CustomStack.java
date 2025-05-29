@@ -8,7 +8,7 @@ public class CustomStack<T> implements Queue<T> {
     private CustomLinkedList<T> list;
     private int capacity;
 
-    public CustomStack() {
+    public CustomStack(int capacity) {
         list = new CustomLinkedList<>();
         setCapacity(capacity);
     }
