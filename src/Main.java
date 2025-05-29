@@ -32,17 +32,17 @@ public class Main {
         library.borrowBook("9780545586177", "M002"); // Sania borrows Catching Fire
         library.returnBook("9780545586177", "M002"); // Sania returns Catching Fire
 
-        //Getting Transactions based on index
+        // Getting Transactions based on index
         System.out.println(library.getTranansactionByIndex(1));
         System.out.println(library.getTranansactionByIndex(2));
 
         // Returning a book
         library.returnBook("9780545791878", "M001"); // Hooman returns The Hunger Games
-        //Sania should automatically get the book
+        // Sania should automatically get the book
 
         System.out.println(library.getTranansactionByIndex(3));
 
-        //checking the borrow transaction of The Hunger Games
+        // checking the borrow transaction of The Hunger Games
         System.out.println(library.getLastTransaction("M002"));
     }
 }
